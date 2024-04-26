@@ -1,12 +1,12 @@
-import path from 'path';
-import 'webpack-dev-server';
+var path = require('path')
+require('webpack-dev-server');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const config = {
+module.exports = {
     mode: isDevelopment ? 'development' : 'production',
     entry: {
-        main: path.resolve(__dirname, 'source/index.ts'),
+        main: path.resolve(__dirname, 'src/index.ts'),
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js'],
@@ -43,5 +43,3 @@ const config = {
         https: false,
     },
 };
-
-export default config;
