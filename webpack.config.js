@@ -1,4 +1,5 @@
 var path = require('path')
+// var HtmlWebpackPlugin = require('html-webpack-plugin')
 require('webpack-dev-server');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -12,7 +13,13 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js'],
     },
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
+        library: {
+            type: 'module',
+        }
+    },
+    experiments: {
+        outputModule: true,
     },
     module: {
         rules: [
@@ -36,10 +43,18 @@ module.exports = {
         ],
     },
     devtool: false,
-    devServer: {
-        port: 4000,
-        historyApiFallback: true,
-        hot: 'only',
-        https: false,
-    },
+    externals: {
+        'react': 'react',
+        'react-dom': 'react-dom',
+    }
+    // plugins: [
+    //     new HtmlWebpackPlugin({
+    //         template: "./dev-server/index.html"
+    //     })
+    // ],
+    // devServer: {
+    //     port: 4000,
+    //     historyApiFallback: true,
+    //     hot: 'only',
+    // },
 };
